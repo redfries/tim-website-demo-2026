@@ -1,26 +1,60 @@
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --color-brand-bg: #FFFFFF;
+  --color-brand-surface: #F8F6F1;
+  --color-brand-ink: #0A0A0A;
+  --color-brand-accent: #C9952A;
+  --color-brand-muted: #767676;
+  --color-brand-border: #E8E4DE;
+
+  --font-display: 'Clash Display', sans-serif;
+  --font-sans: 'General Sans', sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: var(--color-brand-bg);
+  --foreground: var(--color-brand-ink);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes marquee-v {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+@keyframes marquee-h {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Custom Cursor Styles */
+.custom-cursor {
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-brand-accent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor.hovering {
+  width: 40px;
+  height: 40px;
 }
